@@ -94,9 +94,9 @@ if($ch==false){
 }
 ?>
 <script type="text/javascript">
-
-function edit(ID,name,desk,location){
-    alert("ddd");
+var psr =0;
+function edit(ID){
+    psr = ID;
 }
 
 </script>
@@ -193,11 +193,8 @@ function edit(ID,name,desk,location){
                         <div class="u-layout-col">
                           <div class="u-container-style u-layout-cell u-size-60 u-layout-cell-1">
                             <div class="u-container-layout u-container-layout-2">
-                            <a href="index.php?del=<?php echo $ID;?>" name="nazvanie_knopki"  class="u-border-none u-btn u-button-style u-hover-palette-2-dark-1 u-palette-2-base u-btn-1"><span class="u-icon u-text-palette-3-light-3 u-icon-2"><svg class="u-svg-content" viewBox="0 0 32 32"><path d="M10,11.06q6.36.19,12.71.26a1.25,1.25,0,0,0,0-2.5l-5.32-.08a4,4,0,0,1-.19-1,1.25,1.25,0,0,0-2.5,0,6.25,6.25,0,0,0,.1,1L10,8.56C8.39,8.51,8.39,11,10,11.06Z"></path><path d="M23.4,13.21a1.24,1.24,0,0,0-1.2-.91q-5.94-.3-11.89-.25a1.18,1.18,0,0,0-1.18,1,1.25,1.25,0,0,0-.27,1.09A49.2,49.2,0,0,1,10,24.47a1.26,1.26,0,0,0,.92,1.21A52,52,0,0,0,22.65,26a1.29,1.29,0,0,0,1.25-1.25A58.26,58.26,0,0,0,23.4,13.21Zm-2,10.4a48.33,48.33,0,0,1-9-.25,54.22,54.22,0,0,0-1-8.8c3.2,0,6.41,0,9.61.2A54.52,54.52,0,0,1,21.44,23.61Z"></path><path d="M16.3,17.26c.05-1.61-2.45-1.61-2.5,0a14.91,14.91,0,0,0,.3,3.33,1.25,1.25,0,0,0,2.41-.66A11.42,11.42,0,0,1,16.3,17.26Z"></path><path d="M20,17a1.25,1.25,0,0,0-2.5,0,21.24,21.24,0,0,0,.41,3.64,1.26,1.26,0,0,0,1.54.87,1.28,1.28,0,0,0,.87-1.54A16.46,16.46,0,0,1,20,17Z"></path></svg><img></span> &nbsp; 
-                              </a>
-                              <a href='javascript:edit(<?php echo $ID;?>,<?php echo $name;?>,<?php echo $desc;?>,<?php echo $loc;?>)' name="nazvanie_knopki"  class="u-border-none u-btn u-button-style u-hover-palette-2-dark-1 u-palette-2-base u-btn-2"><span class="u-icon u-text-palette-3-light-3 u-icon-3"><svg class="u-svg-content" viewBox="0 0 64 64" style="width: 1em; height: 1em;"><g><path d="M55.736,13.636l-4.368-4.362c-0.451-0.451-1.044-0.677-1.636-0.677c-0.592,0-1.184,0.225-1.635,0.676l-3.494,3.484   l7.639,7.626l3.494-3.483C56.639,15.998,56.639,14.535,55.736,13.636z"></path><polygon points="21.922,35.396 29.562,43.023 50.607,22.017 42.967,14.39  "></polygon><polygon points="20.273,37.028 18.642,46.28 27.913,44.654  "></polygon><path d="M41.393,50.403H12.587V21.597h20.329l5.01-5H10.82c-1.779,0-3.234,1.455-3.234,3.234v32.339   c0,1.779,1.455,3.234,3.234,3.234h32.339c1.779,0,3.234-1.455,3.234-3.234V29.049l-5,4.991V50.403z"></path>
-</g></svg><img></span> &nbsp; 
-                              </a>
+                            <a href="index.php?del=<?php echo $ID;?>" name="nazvanie_knopki"  class="u-border-none u-btn u-button-style u-hover-palette-2-dark-1 u-palette-2-base u-btn-1"><span class="u-icon u-text-palette-3-light-3 u-icon-2"><svg class="u-svg-content" viewBox="0 0 32 32"><path d="M10,11.06q6.36.19,12.71.26a1.25,1.25,0,0,0,0-2.5l-5.32-.08a4,4,0,0,1-.19-1,1.25,1.25,0,0,0-2.5,0,6.25,6.25,0,0,0,.1,1L10,8.56C8.39,8.51,8.39,11,10,11.06Z"></path><path d="M23.4,13.21a1.24,1.24,0,0,0-1.2-.91q-5.94-.3-11.89-.25a1.18,1.18,0,0,0-1.18,1,1.25,1.25,0,0,0-.27,1.09A49.2,49.2,0,0,1,10,24.47a1.26,1.26,0,0,0,.92,1.21A52,52,0,0,0,22.65,26a1.29,1.29,0,0,0,1.25-1.25A58.26,58.26,0,0,0,23.4,13.21Zm-2,10.4a48.33,48.33,0,0,1-9-.25,54.22,54.22,0,0,0-1-8.8c3.2,0,6.41,0,9.61.2A54.52,54.52,0,0,1,21.44,23.61Z"></path><path d="M16.3,17.26c.05-1.61-2.45-1.61-2.5,0a14.91,14.91,0,0,0,.3,3.33,1.25,1.25,0,0,0,2.41-.66A11.42,11.42,0,0,1,16.3,17.26Z"></path><path d="M20,17a1.25,1.25,0,0,0-2.5,0,21.24,21.24,0,0,0,.41,3.64,1.26,1.26,0,0,0,1.54.87,1.28,1.28,0,0,0,.87-1.54A16.46,16.46,0,0,1,20,17Z"></path></svg><img></span> &nbsp; </a>
+                              <!--<a href='javascript:edit(<?php echo $ID;?>)' name="nazvanie_knopki"  class="u-border-none u-btn u-button-style u-hover-palette-2-dark-1 u-palette-2-base u-btn-2"><span class="u-icon u-text-palette-3-light-3 u-icon-3"><svg class="u-svg-content" viewBox="0 0 64 64" style="width: 1em; height: 1em;"><g><path d="M55.736,13.636l-4.368-4.362c-0.451-0.451-1.044-0.677-1.636-0.677c-0.592,0-1.184,0.225-1.635,0.676l-3.494,3.484   l7.639,7.626l3.494-3.483C56.639,15.998,56.639,14.535,55.736,13.636z"></path><polygon points="21.922,35.396 29.562,43.023 50.607,22.017 42.967,14.39  "></polygon><polygon points="20.273,37.028 18.642,46.28 27.913,44.654  "></polygon><path d="M41.393,50.403H12.587V21.597h20.329l5.01-5H10.82c-1.779,0-3.234,1.455-3.234,3.234v32.339   c0,1.779,1.455,3.234,3.234,3.234h32.339c1.779,0,3.234-1.455,3.234-3.234V29.049l-5,4.991V50.403z"></path></g></svg><img></span> &nbsp; </a>-->
                               <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
                                 <p><?php echo $desc;?></p>
                               </div>
@@ -241,8 +238,16 @@ function edit(ID,name,desk,location){
           ?>
             <!--Тут кончается-->
         </div>
+
+
+        <?php
+        if($_SESSION['level']==4 or $_SESSION['level']==5){
+        ?>
         <a href="#sec-784" class="u-btn u-button-style u-dialog-link u-hover-palette-1-dark-1 u-palette-1-base u-btn-4" title="Добавить больницу"><span class="u-icon"></span>&nbsp;Добавить
         </a>
+        <?php
+        }
+        ?>
       </div>
       
     </section>
