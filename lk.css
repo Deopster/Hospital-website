@@ -1,3 +1,7 @@
+ .u-section-1 {
+  background-image: linear-gradient(#e9f2fa, white);
+}
+
 .u-section-1 .u-sheet-1 {
   min-height: 401px;
 }
@@ -24,6 +28,14 @@
   margin: 0 85px 0 auto;
 }
 
+.u-section-1 .u-btn-1 {
+  letter-spacing: 1px;
+  border-style: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: -31px auto 0 135px;
+}
+
 .u-section-1 .u-layout-cell-2 {
   min-height: 364px;
   background-image: none;
@@ -34,11 +46,13 @@
 }
 
 .u-section-1 .u-text-1 {
-  margin: 16px auto 0 42px;
+  font-size: 3.75rem;
+  margin: 16px 29px 0 42px;
 }
 
 .u-section-1 .u-text-2 {
-  margin: 37px 333px 0 42px;
+  font-size: 3.75rem;
+  margin: 37px 69px 0 42px;
 }
 
 @media (max-width: 1199px) {
@@ -50,8 +64,20 @@
     min-height: 300px;
   }
 
+  .u-section-1 .u-image-1 {
+    margin-right: 40px;
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-left: 48px;
+  }
+
   .u-section-1 .u-layout-cell-2 {
     min-height: 300px;
+  }
+
+  .u-section-1 .u-text-1 {
+    margin-right: 0;
   }
 
   .u-section-1 .u-text-2 {
@@ -65,13 +91,18 @@
   }
 
   .u-section-1 .u-layout-cell-1 {
-    min-height: 230px;
+    min-height: 100px;
   }
 
   .u-section-1 .u-image-1 {
-    width: 300px;
-    height: 300px;
+    width: 252px;
+    height: 252px;
     margin-right: 0;
+  }
+
+  .u-section-1 .u-btn-1 {
+    margin-top: 24px;
+    margin-left: 0;
   }
 
   .u-section-1 .u-layout-cell-2 {
@@ -86,10 +117,6 @@
 @media (max-width: 767px) {
   .u-section-1 .u-sheet-1 {
     min-height: 971px;
-  }
-
-  .u-section-1 .u-layout-cell-1 {
-    min-height: 345px;
   }
 
   .u-section-1 .u-container-layout-1 {
@@ -108,15 +135,20 @@
     min-height: 747px;
   }
 
-  .u-section-1 .u-layout-cell-1 {
-    min-height: 217px;
+  .u-section-1 .u-text-1 {
+    font-size: 1.875rem;
   }
 
   .u-section-1 .u-text-2 {
     margin-right: 0;
+    font-size: 1.875rem;
   }
-}.u-section-2 .u-sheet-1 {
-  min-height: 394px;
+} .u-section-2 {
+  background-image: linear-gradient(white, #e9f2fa);
+}
+
+.u-section-2 .u-sheet-1 {
+  min-height: 100vh;
 }
 
 .u-section-2 .u-table-1 {
