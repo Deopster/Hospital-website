@@ -8,6 +8,10 @@ if (isset($_GET['add']))
     $dd = $_GET['del'];
     mysqli_query($link, "DELETE FROM hospitals WHERE  ID='$dd'") or die(mysqli_error($link));
 }
+if (isset($_GET['data']))
+{
+    $ID = $_GET['data'];
+}
 ?>
 <html style="font-size: 16px;">
 <head>
@@ -21,7 +25,7 @@ if (isset($_GET['add']))
     <link rel="stylesheet" href="Страница-1.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 3.30.2, nicepage.com">
+    <meta name="generator" content="Доктора">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
 
 
@@ -98,19 +102,18 @@ if (isset($_GET['add']))
                 <div class="u-repeater u-repeater-1">
                     <!--Начало блока-->
                     <?php
-	                $query = "SELECT * FROM hospitals WHERE ID > 0";
+	                $query = "SELECT * FROM doctors WHERE hospital = '$ID'";
 	                $result = mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($link));
 	                for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row); $result = ''; foreach ($data as $elem) { 
 	                $name = $elem['Name'] ;
-	                $desc = $elem['description'] ;
-                    $loc= $elem['location'] ;
-                    $ID = $elem['ID'] ;
+	                $prof = $elem['Prof'] ;
+                    $ID_d = $elem['ID'] ;
                     ?>
                     <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-container-layout-1">
                             <div class="u-container-style u-group u-palette-1-light-1 u-shape-rectangle u-group-1">
                                 <div class="u-container-layout u-container-layout-2">
-                                    <h2 class="u-text u-text-1">Александр Невский</h2>
+                                    <h2 class="u-text u-text-1"><?php echo $name;?></h2>
                                     <a href="https://nicepage.com/css-templates" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">
                                         <span class="u-icon u-icon-1">
                                             <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;">
@@ -122,7 +125,27 @@ if (isset($_GET['add']))
                                             </svg><img>
                                         </span>
                                     </a>
-                                    <h4 class="u-text u-text-2">Терапевт</h4>
+                                    <h4 class="u-text u-text-2"><?php echo $prof;?></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php
+	                }
+                    ?>
+                    <div class="u-container-style u-list-item u-repeater-item">
+                        <div class="u-container-layout u-similar-container u-container-layout-1">
+                            <div class="u-container-style u-group u-palette-1-light-1 u-shape-rectangle u-group-1">
+                                <div class="u-container-layout u-container-layout-2">
+                                    <h6 class="u-text u-text-1"style="width: 15em;height: 2.1em;"><input type="text" placeholder="ФИО" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required=""></h6>
+                                    <a href="https://nicepage.com/css-templates" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">Добавить
+                                        <span class="u-icon u-icon-1">
+                                            <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 0.1em; height: 1em;">
+                                                
+                                            </svg><img>
+                                        </span>
+                                    </a>
+                                    <h6 class="u-text u-text-2"><input type="text" placeholder="Специальность" style="width: 10em;height: 1.2em;" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required=""></h6>
                                 </div>
                             </div>
                         </div>
@@ -130,23 +153,40 @@ if (isset($_GET['add']))
                     <!--конец блока-->
                 </div>
             </div>
-            <a href="https://nicepage.com/c/art-design-html-templates" class="u-btn u-button-style u-hover-palette-1-dark-1 u-palette-1-base u-btn-5">Добавить</a>
         </div>
     </section>
 
-
-
-
-    <section class="u-backlink u-clearfix u-grey-80">
-        <a class="u-link" href="https://nicepage.com/landing-page" target="_blank">
-            <span>Free Landing Page</span>
-        </a>
-        <p class="u-text">
-            <span>created with</span>
-        </p>
-        <a class="u-link" href="" target="_blank">
-            <span>WYSIWYG Web Builder</span>
-        </a>.
+   <!--Добавить больницу-->
+    <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-5" id="sec-784">
+      <div class="u-align-left u-container-style u-dialog u-shape-rectangle u-white u-dialog-1">
+          <div class="u-container-layout u-valign-top u-container-layout-1">
+              <div class="u-container-layout u-container-layout-2">
+                  <div class="u-form u-login-control u-form-1">
+                      <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-0 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+                          <div class="u-form-group u-form-name">
+                              <label for="hsname" class="u-label">Название больницы</label>
+                              <input type="text" placeholder="Введите Название больницы" id="hsname" name="hsname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                          </div>
+                          <div class="u-form-group u-form-password">
+                              <label for="hsdescription" class="u-label">Описание больницы</label>
+                              <input type="text" placeholder="Введите описание больницы" id="hsdescription" name="hsdescription" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                          </div>
+                          <div class="u-form-group u-form-password">
+                              <label for="hsloc" class="u-label">Местоположение</label>
+                              <input type="text" placeholder="Введите местоположение" id="hsloc" name="hsloc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          </div>
+                          <div class="u-align-right u-form-group u-form-submit">
+                              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-1-dark-1 u-btn-1">
+                                  Добавить<br>
+                              </a>
+                              <input type="submit" value="submit" name="add" class="u-form-control-hidden">
+                          </div>
+                          <input type="hidden" value="" name="recaptchaResponse">
+                      </form>
+                  </div>
+              </div>
+          </div><button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4f81"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-4f81"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
+      </div>
     </section>
 </body>
 </html>

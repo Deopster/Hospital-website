@@ -109,15 +109,17 @@ function DoPost(ns) {
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Ты думал тут что-то будет?">
+
+    <meta name="keywords" content="Ты думал тут что-то будет? ОО нет.">
+
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Поликлиники</title>
     <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="hospitals.css" media="screen">
+    <link rel="stylesheet" href="hospitals.css" media="screen">
     <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
-    <meta name="generator" content="Nicepage 3.30.2, nicepage.com">
+    <meta name="generator" content="hospital">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     
     
@@ -230,7 +232,7 @@ if(!empty($_SESSION['login'])){
                               <?php
                               }else{
                               ?>
-                              <a href="#" onclick="echojavascript:DoPost('<?php echo $ID;?>')" type="button" class="u-btn u-btn-round u-button-style u-dialog-link u-hover-feature u-hover-palette-1-light-2 u-palette-1-base u-radius-2 u-btn-3">Выбрать врача<span class="u-icon"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068 c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557 l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104 c0.006-.006,0.011-.013,0.018-.019C513.968,262.339,513.943,249.635,506.134,241.843z"></path></svg><img></span></a>
+                              <a href="#" onclick="echojavascript:DoPost('<?php echo $ID;?>')"name="dd" type="button" class="u-btn u-btn-round u-button-style u-dialog-link u-hover-feature u-hover-palette-1-light-2 u-palette-1-base u-radius-2 u-btn-3">Выбрать врача<span class="u-icon"><svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><path d="M506.134,241.843c-0.006-0.006-0.011-0.013-0.018-0.019l-104.504-104c-7.829-7.791-20.492-7.762-28.285,0.068 c-7.792,7.829-7.762,20.492,0.067,28.284L443.558,236H20c-11.046,0-20,8.954-20,20c0,11.046,8.954,20,20,20h423.557 l-70.162,69.824c-7.829,7.792-7.859,20.455-0.067,28.284c7.793,7.831,20.457,7.858,28.285,0.068l104.504-104 c0.006-.006,0.011-.013,0.018-.019C513.968,262.339,513.943,249.635,506.134,241.843z"></path></svg><img></span></a>
                               <form action="docs.php" name="hos" id="<?php echo $ID;?>" method="GET">
                               <input type="hidden" name="data" value="<?php echo $ID;?>">
                               </form>
