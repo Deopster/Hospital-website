@@ -64,6 +64,14 @@ if (isset($_GET['exe']))
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index.php" style="padding: 10px 20px;">Поликлиники</a>
 </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="lk.php" style="padding: 10px 20px;">ЛК</a>
 </li></ul>
+        <?php
+        if(!empty($_SESSION['level']))
+        if($_SESSION['level']==3){
+        ?>
+        </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="admin.php" style="padding: 10px 20px;">Админ панель</a>
+        <?php
+        }
+        ?>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">

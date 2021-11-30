@@ -150,7 +150,8 @@ function DoPost(ns) {
             </a>
           </div>
           <div class="u-custom-menu u-nav-container">
-            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Поликлиники.html" style="padding: 10px 20px;">Поликлиники</a>
+       
+            <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Поликлиники.php" style="padding: 10px 20px;">Поликлиники</a>
 <?php
 if(!empty($_SESSION['login'])){
 ?>
@@ -158,6 +159,14 @@ if(!empty($_SESSION['login'])){
 <?php
 }
 ?>
+ <?php
+        if(!empty($_SESSION['level']))
+        if($_SESSION['level']==3){
+        ?>
+        </li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="admin.php" style="padding: 10px 20px;">Админ панель</a>
+        <?php
+        }
+        ?>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">

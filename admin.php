@@ -52,15 +52,15 @@ $(function () {
 		$('#edit').blur(function () {
 		var val = $(this).val();
 		$(this).parent().empty().html(val);
-		send(val);
+		send(val,elm_name_class);
 		});
 	});
 });
 </script>
 <script>
-function send(val){
-    var rno =elm_name_class ;
-	//alert(i+" "+ j+ " "+tb+ " "+ val);
+function send(val,p){
+    var rno =p;
+	alert(rno+ " "+ val);
     $.ajax({
         type: "POST",
         url: "ajax.php",
