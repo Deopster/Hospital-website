@@ -137,16 +137,21 @@ if (isset($_GET['data']))
                         <div class="u-container-layout u-similar-container u-container-layout-1">
                             <div class="u-container-style u-group u-palette-1-light-1 u-shape-rectangle u-group-1">
                                 <div class="u-container-layout u-container-layout-2">
-                                    <h6 class="u-text u-text-1"style="width: 15em;height: 2.1em;"><input type="text" placeholder="ФИО" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required=""></h6>
-                                    <a href="https://nicepage.com/css-templates" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">Добавить
+                                <form action="#" method="GET">
+                                    <input style="width: 20em;margin-top: 1em;" type="text" placeholder="ФИО" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required="">
+                                    <a href="#" name="add" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">Добавить
                                         <span class="u-icon u-icon-1">
                                             <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 0.1em; height: 1em;">
                                                 
                                             </svg><img>
                                         </span>
                                     </a>
-                                    <h6 class="u-text u-text-2"><input type="text" placeholder="Специальность" style="width: 10em;height: 1.2em;" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required=""></h6>
-                                </div>
+                                    <div class="u-align-right u-form-group u-form-submit">
+                                      <input type="submit" value="submit" name="add" class="u-form-control-hidden">
+                                  </div>
+                                  <input type="text" placeholder="Специальность" style="width: 10em;height: 1.2em;" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required="">
+                                 </form>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -155,7 +160,27 @@ if (isset($_GET['data']))
             </div>
         </div>
     </section>
-
+                      <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-0 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+                          <div class="u-form-group u-form-name">
+                              <label for="hsname" class="u-label">Название больницы</label>
+                              <input type="text" placeholder="Введите Название больницы" id="hsname" name="hsname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                          </div>
+                          <div class="u-form-group u-form-password">
+                              <label for="hsdescription" class="u-label">Описание больницы</label>
+                              <input type="text" placeholder="Введите описание больницы" id="hsdescription" name="hsdescription" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                          </div>
+                          <div class="u-form-group u-form-password">
+                              <label for="hsloc" class="u-label">Местоположение</label>
+                              <input type="text" placeholder="Введите местоположение" id="hsloc" name="hsloc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          </div>
+                          <div class="u-align-right u-form-group u-form-submit">
+                              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-1-dark-1 u-btn-1">
+                                  Добавить<br>
+                              </a>
+                              <input type="submit" value="submit" name="add" class="u-form-control-hidden">
+                          </div>
+                          <input type="hidden" value="" name="recaptchaResponse">
+                      </form>
    <!--Добавить больницу-->
     <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-5" id="sec-784">
       <div class="u-align-left u-container-style u-dialog u-shape-rectangle u-white u-dialog-1">
