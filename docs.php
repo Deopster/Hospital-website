@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 require_once("connect.php");
 $link = mysqli_connect($host, $user, $password, $db_name) or die(mysqli_error($link));
 mysqli_query($link, "SET NAMES 'utf8'");
@@ -18,6 +19,30 @@ if (isset($_REQUEST['FIO']))
     $FIO=$_REQUEST['FIO'];
     $spec=$_REQUEST['spec'];
     mysqli_query($link, "INSERT INTO doctors SET Name='$FIO', Prof='$spec', hospital='$ID'") or die(mysqli_error($link));
+}
+if (isset($_REQUEST['D_name']))
+{
+     $ls=true;
+     $query = "SELECT * FROM hospitals WHERE ID = '$ID'";
+	                $result = mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($link));
+	                for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row); $result = ''; foreach ($data as $elem) { 
+	                $HOSname = $elem['Name'] ;
+                    }
+    $D_FIO=$_REQUEST['D_name'];
+    $D_spec=$_REQUEST['D_prof'];
+    $Username=$_SESSION["login"];
+    $USER_ID =$_SESSION["ID"];
+    $query = "SELECT * FROM records WHERE USER_ID = '$USER_ID'";
+	                $result = mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($link));
+	                for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row); $result = ''; foreach ($data as $elem) { 
+                    if ($D_FIO==$elem['D_name']){
+                         mysqli_query($link, "DELETE FROM records WHERE USER_ID = '$USER_ID' AND D_name='$D_FIO'") or die(mysqli_error($link)); 
+                         $ls=false;
+                    }
+                    }
+    if($ls==true){            
+        mysqli_query($link, "INSERT INTO records SET Name='$Username',hospital='$HOSname', D_prof='$D_spec',D_name='$D_FIO',USER_ID='$USER_ID' ") or die(mysqli_error($link));
+    }
 }
 ?>
 <html style="font-size: 16px;">
@@ -48,8 +73,11 @@ if (isset($_REQUEST['FIO']))
     <meta property="og:type" content="website">
 
     <script type="text/javascript">
-    function DoPost(ns) {
+    function DoPost() {
         document.getElementById("ff").submit();
+    }
+    function DoPost2(ns) {
+        document.getElementById(ns).submit();
     }   
     </script>
 </head>
@@ -77,7 +105,7 @@ if (isset($_REQUEST['FIO']))
                 <div class="u-custom-menu u-nav-container">
                     <ul class="u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Поликлиники.html" style="padding: 10px 20px;">Поликлиники</a>
+                            <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index.php" style="padding: 10px 20px;">Поликлиники</a>
                         </li>
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="404.html" style="padding: 10px 20px;">Пациенты</a>
@@ -115,42 +143,53 @@ if (isset($_REQUEST['FIO']))
                 <div class="u-repeater u-repeater-1">
                     <!--Начало блока-->
                     <?php
-	                $query = "SELECT * FROM doctors WHERE hospital = '$ID'";
+	                $quer = "SELECT * FROM doctors WHERE hospital = '$ID'";
+	                $resul = mysqli_query($GLOBALS['link'], $quer) or die(mysqli_error($link));
+	                for ($dat = []; $ro = mysqli_fetch_assoc($resul); $dat[] = $ro); $resul = ''; foreach ($dat as $ele) { 
+	                $name = $ele['Name'] ;
+	                $prof = $ele['Prof'] ;
+                    $ID_d = $ele['ID'] ;
+                    $USER_ID =$_SESSION["ID"];
+                    $svg='<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;"><g><g><path d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216    v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z"></path></g></g></svg><img>';
+                    $col='#db545a';
+                    $query = "SELECT * FROM records WHERE USER_ID = '$USER_ID'";
 	                $result = mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($link));
 	                for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row); $result = ''; foreach ($data as $elem) { 
-	                $name = $elem['Name'] ;
-	                $prof = $elem['Prof'] ;
-                    $ID_d = $elem['ID'] ;
+                    if ($name==$elem['D_name']){
+                         $svg='<svg class="u-svg-content" viewBox="0 0 18 15" style="width: 1em; height: 1em;"><desc></desc><defs></defs><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="currentColor" id="Core" transform="translate(-423.000000, -47.000000)"><g id="check" transform="translate(423.000000, 47.500000)"><path d="M6,10.2 L1.8,6 L0.4,7.4 L6,13 L18,1 L16.6,-0.4 L6,10.2 Z" id="Shape"></path></g></g></g></svg><img>';
+                         $col='#32CD32';
+                    }
+                    }
                     ?>
                     <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-container-layout-1">
                             <div class="u-container-style u-group u-palette-1-light-1 u-shape-rectangle u-group-1">
                                 <div class="u-container-layout u-container-layout-2">
+                                <form action="#" method="POST" id="<?php echo $name;?>" >
                                     <h2 class="u-text u-text-1"><?php echo $name;?></h2>
-                                    <a href="https://nicepage.com/css-templates" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">
+                                    <a href="#" onclick="echojavascript:DoPost2('<?php echo $name;?>')" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1" style="background-color: <?php echo $col;?> !important;">
                                         <span class="u-icon u-icon-1">
-                                            <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 1em; height: 1em;">
-                                                <g>
-                                                    <g>
-                                                        <path d="M492,236H276V20c0-11.046-8.954-20-20-20c-11.046,0-20,8.954-20,20v216H20c-11.046,0-20,8.954-20,20s8.954,20,20,20h216    v216c0,11.046,8.954,20,20,20s20-8.954,20-20V276h216c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z"></path>
-                                                    </g>
-                                                </g>
-                                            </svg><img>
+                                        <?php echo $svg;?>
                                         </span>
                                     </a>
                                     <h4 class="u-text u-text-2"><?php echo $prof;?></h4>
+                                    <input form="<?php echo $name;?>" type="hidden" name="data" value="<?php echo $ID;?>">
+                                    <input form="<?php echo $name;?>" type="hidden" name="D_prof" value="<?php echo $prof;?>">
+                                    <input form="<?php echo $name;?>" type="hidden"  name="D_name" value="<?php echo $name;?>">
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <?php
 	                }
+                    if($_SESSION['level']==2 or $_SESSION['level']==3){
                     ?>
                     <div class="u-container-style u-list-item u-repeater-item">
                         <div class="u-container-layout u-similar-container u-container-layout-1">
                             <div class="u-container-style u-group u-palette-1-light-1 u-shape-rectangle u-group-1">
                                 <div class="u-container-layout u-container-layout-2">
-                                <form action="#" method="GET" id="ff">
+                                <form action="#" method="POST" id="ff" name="add">
                                     <input style="width: 20em;margin-top: 1em;" type="text" placeholder="ФИО" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required="">
                                     <a onclick="echojavascript:DoPost()" href="#" name="add" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">Добавить
                                         <span class="u-icon u-icon-1">
@@ -168,63 +207,13 @@ if (isset($_REQUEST['FIO']))
                             </div>
                         </div>
                     </div>
+                     <?php
+	                }
+                    ?>
                     <!--конец блока-->
                 </div>
             </div>
         </div>
-    </section>
-                      <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-0 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-                          <div class="u-form-group u-form-name">
-                              <label for="hsname" class="u-label">Название больницы</label>
-                              <input type="text" placeholder="Введите Название больницы" id="hsname" name="hsname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                          </div>
-                          <div class="u-form-group u-form-password">
-                              <label for="hsdescription" class="u-label">Описание больницы</label>
-                              <input type="text" placeholder="Введите описание больницы" id="hsdescription" name="hsdescription" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                          </div>
-                          <div class="u-form-group u-form-password">
-                              <label for="hsloc" class="u-label">Местоположение</label>
-                              <input type="text" placeholder="Введите местоположение" id="hsloc" name="hsloc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                          </div>
-                          <div class="u-align-right u-form-group u-form-submit">
-                              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-1-dark-1 u-btn-1">
-                                  Добавить<br>
-                              </a>
-                              <input type="submit" value="submit" name="add" class="u-form-control-hidden">
-                          </div>
-                          <input type="hidden" value="" name="recaptchaResponse">
-                      </form>
-   <!--Добавить больницу-->
-    <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-5" id="sec-784">
-      <div class="u-align-left u-container-style u-dialog u-shape-rectangle u-white u-dialog-1">
-          <div class="u-container-layout u-valign-top u-container-layout-1">
-              <div class="u-container-layout u-container-layout-2">
-                  <div class="u-form u-login-control u-form-1">
-                      <form action="#" method="POST" class="u-clearfix u-form-custom-backend u-form-spacing-0 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-                          <div class="u-form-group u-form-name">
-                              <label for="hsname" class="u-label">Название больницы</label>
-                              <input type="text" placeholder="Введите Название больницы" id="hsname" name="hsname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                          </div>
-                          <div class="u-form-group u-form-password">
-                              <label for="hsdescription" class="u-label">Описание больницы</label>
-                              <input type="text" placeholder="Введите описание больницы" id="hsdescription" name="hsdescription" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
-                          </div>
-                          <div class="u-form-group u-form-password">
-                              <label for="hsloc" class="u-label">Местоположение</label>
-                              <input type="text" placeholder="Введите местоположение" id="hsloc" name="hsloc" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-                          </div>
-                          <div class="u-align-right u-form-group u-form-submit">
-                              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-1-dark-1 u-btn-1">
-                                  Добавить<br>
-                              </a>
-                              <input type="submit" value="submit" name="add" class="u-form-control-hidden">
-                          </div>
-                          <input type="hidden" value="" name="recaptchaResponse">
-                      </form>
-                  </div>
-              </div>
-          </div><button class="u-dialog-close-button u-icon u-text-grey-40 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4f81"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-4f81"><rect x="7" y="0" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="2" height="16"></rect><rect x="0" y="7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.3138 8.0002)" width="16" height="2"></rect></svg></button>
-      </div>
     </section>
 </body>
 </html>

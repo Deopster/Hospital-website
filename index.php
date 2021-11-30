@@ -70,11 +70,12 @@ if (isset($_POST['log'])){
 $ch=false;
 $login = $_POST['username'];
 $password = $_POST['password'];
-$query = "SELECT Password,Allowment FROM users WHERE Name='$login'";
+$query = "SELECT Password,Allowment,ID FROM users WHERE Name='$login'";
 $result = mysqli_query ($link , $query);
 for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row); $result = ''; foreach ($data as $elem) { 
  $try =  $elem['Password'] ; 
  $level = $elem['Allowment'] ; 
+ $USer_ID= $elem['ID'] ; 
 } 
 if(empty($try)){
  echo "<script>alert(\"Не найдено пользователя с заданным логином.\");</script>"; 
@@ -87,7 +88,7 @@ $ch=true;
 }
 
 if($ch==false ){
- $_SESSION['user_id'] = "some id";
+ $_SESSION['ID'] = $USer_ID;
  $_SESSION["login"] = $login; //Записываем в сессию логин пользователя
  $_SESSION["level"] = $level; 
  echo "<script>alert(\"авторизация выполнена успешно.\");</script>"; 
@@ -150,7 +151,6 @@ function DoPost(ns) {
           </div>
           <div class="u-custom-menu u-nav-container">
             <ul class="u-nav u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Поликлиники.html" style="padding: 10px 20px;">Поликлиники</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="404.html" style="padding: 10px 20px;">Пациенты</a>
 <?php
 if(!empty($_SESSION['login'])){
 ?>
@@ -158,7 +158,6 @@ if(!empty($_SESSION['login'])){
 <?php
 }
 ?>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="Страница-1.html" style="padding: 10px 20px;">Страница 1</a>
 </li></ul>
           </div>
           <div class="u-custom-menu u-nav-container-collapse">
@@ -166,7 +165,6 @@ if(!empty($_SESSION['login'])){
               <div class="u-inner-container-layout u-sidenav-overflow">
                 <div class="u-menu-close"></div>
                 <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Поликлиники.html" style="padding: 10px 20px;">Поликлиники</a>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="404.html" style="padding: 10px 20px;">Пациенты</a>
 <?php
 if(!empty($_SESSION['login'])){
 ?>
@@ -174,7 +172,6 @@ if(!empty($_SESSION['login'])){
 <?php
 }
 ?>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="docs.php" style="padding: 10px 20px;">Страница 1</a>
 </li></ul>
               </div>
             </div>

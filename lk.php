@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+<?php
+require_once("connect.php");
+session_start();
+$link = mysqli_connect($host, $user, $password, $db_name) or die(mysqli_error($link));
+mysqli_query($link, "SET NAMES 'windows-1251'");
+$pieces = explode(" ", $_SESSION["login"]);
+$name=$pieces[0];
+$FIO=$pieces[1];
+$USER_ID =$_SESSION["ID"];
+?>
 <html style="font-size: 16px;">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,64 +94,21 @@
     </section>
     <section class="u-align-center u-clearfix u-gradient u-section-2" id="sec-d613">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-expanded-width u-table u-table-responsive u-table-1">
-          <table class="u-table-entity u-table-entity-1">
-            <colgroup>
-              <col width="25%">
-              <col width="25%">
-              <col width="25%">
-              <col width="25%">
-            </colgroup>
-            <tbody class="u-table-body">
-              <tr style="height: 64px;">
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Column 1</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Column 2</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Column 3</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Column 4</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Row 1</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Row 2</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Row 3</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-              </tr>
-              <tr style="height: 65px;">
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Row 4</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <div class="u-expanded-width u-table u-table-responsive u-table-1">
+              <?php
+              $query = "SELECT * FROM records WHERE id ='$USER_ID'";
+	            $result = mysqli_query($GLOBALS['link'], $query) or die(mysqli_error($link));
+	            for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row); $result = ''; foreach ($data as $elem) { 
+	            $result .= '<tr>'; 
+	            $result .= '<td id="trig">' . $elem['id'] . '</td>';
+	            $result .= '<td id="trig">' . $elem['name'] . '</td>';
+	            for ($x=1; $x<37; $x++){
+	             $result .= "<td id=$table>" . $elem[$x.'A'] . '</td>'; 
+              }
+              } 
+              ?>
+          </div>
       </div>
-    </section>
-    
-    
-    
-    
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
     </section>
   </body>
 </html>
