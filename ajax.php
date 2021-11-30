@@ -7,6 +7,6 @@ $id = $_POST['fr'];
 $pieces = explode(" ", $id);
 $finr=$pieces[1];
 $finn=$pieces[0];
-
+$finn = (int)$finn;
 mysqli_query($link, "UPDATE users SET $finr='$val' WHERE id='$finn'") or die(mysqli_error($link)); 
 ?>

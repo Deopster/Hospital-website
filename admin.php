@@ -60,7 +60,7 @@ $(function () {
 <script>
 function send(val,p){
     var rno =p;
-	alert(rno+ " "+ val);
+	//alert(rno+ " "+ val);
     $.ajax({
         type: "POST",
         url: "ajax.php",
@@ -143,7 +143,7 @@ function send(val,p){
                 $id=$elem['ID'];
 	            $result .= '<td class="u-border-1 u-border-grey-30 u-table-cell" id="'.$id.' Name"">' . $elem['Name'] . '</td>';
 	            $result .= '<td class="u-border-1 u-border-grey-30 u-table-cell" id="'.$id.' Password"">' . $elem['Password'] . '</td>';
-	            $result .= '<td class="u-border-1 u-border-grey-30 u-table-cell" id="'.$id.'  Allowment"">' . $elem['Allowment'] . '</td>'; 
+	            $result .= '<td class="u-border-1 u-border-grey-30 u-table-cell" id="'.$id.' Allowment"">' . $elem['Allowment'] . '</td>'; 
               } 
               echo $result;
               ?>
