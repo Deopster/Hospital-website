@@ -154,7 +154,7 @@ function DoPost(ns) {
 <?php
 if(!empty($_SESSION['login'])){
 ?>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="lk.html" style="padding: 10px 20px;">ЛК</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="lk.php" style="padding: 10px 20px;">ЛК</a>
 <?php
 }
 ?>
@@ -168,7 +168,7 @@ if(!empty($_SESSION['login'])){
 <?php
 if(!empty($_SESSION['login'])){
 ?>
-</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="lk.html" style="padding: 10px 20px;">ЛК</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="lk.php" style="padding: 10px 20px;">ЛК</a>
 <?php
 }
 ?>

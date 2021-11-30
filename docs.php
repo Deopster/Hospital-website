@@ -108,10 +108,7 @@ if (isset($_REQUEST['D_name']))
                             <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="index.php" style="padding: 10px 20px;">Поликлиники</a>
                         </li>
                         <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="404.html" style="padding: 10px 20px;">Пациенты</a>
-                        </li>
-                        <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="lk.html" style="padding: 10px 20px;">ЛК</a>
+                            <a class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="lk.php" style="padding: 10px 20px;">ЛК</a>
                         </li>
                     </ul>
                 </div>
@@ -122,12 +119,9 @@ if (isset($_REQUEST['D_name']))
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                                 <li class="u-nav-item">
                                     <a class="u-button-style u-nav-link" href="Поликлиники.html" style="padding: 10px 20px;">Поликлиники</a>
-                                </li>
+                                </li> 
                                 <li class="u-nav-item">
-                                    <a class="u-button-style u-nav-link" href="404.html" style="padding: 10px 20px;">Пациенты</a>
-                                </li>
-                                <li class="u-nav-item">
-                                    <a class="u-button-style u-nav-link" href="lk.html" style="padding: 10px 20px;">ЛК</a>
+                                    <a class="u-button-style u-nav-link" href="lk.php" style="padding: 10px 20px;">ЛК</a>
                                 </li>
                             </ul>
                         </div>
