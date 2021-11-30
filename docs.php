@@ -12,6 +12,13 @@ if (isset($_GET['data']))
 {
     $ID = $_GET['data'];
 }
+
+if (isset($_REQUEST['FIO']))
+{
+    $FIO=$_REQUEST['FIO'];
+    $spec=$_REQUEST['spec'];
+    mysqli_query($link, "INSERT INTO doctors SET Name='$FIO', Prof='$spec', hospital='$ID'") or die(mysqli_error($link));
+}
 ?>
 <html style="font-size: 16px;">
 <head>
@@ -39,6 +46,12 @@ if (isset($_GET['data']))
     <meta name="theme-color" content="#478ac9">
     <meta property="og:title" content="Страница 1">
     <meta property="og:type" content="website">
+
+    <script type="text/javascript">
+    function DoPost(ns) {
+        document.getElementById("ff").submit();
+    }   
+    </script>
 </head>
 <body class="u-body">
     <header class="u-clearfix u-header u-header" id="sec-5d90">
@@ -137,9 +150,9 @@ if (isset($_GET['data']))
                         <div class="u-container-layout u-similar-container u-container-layout-1">
                             <div class="u-container-style u-group u-palette-1-light-1 u-shape-rectangle u-group-1">
                                 <div class="u-container-layout u-container-layout-2">
-                                <form action="#" method="GET">
+                                <form action="#" method="GET" id="ff">
                                     <input style="width: 20em;margin-top: 1em;" type="text" placeholder="ФИО" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required="">
-                                    <a href="#" name="add" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">Добавить
+                                    <a onclick="echojavascript:DoPost()" href="#" name="add" class="u-btn u-button-style u-hover-palette-3-base u-palette-2-base u-btn-1">Добавить
                                         <span class="u-icon u-icon-1">
                                             <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" style="width: 0.1em; height: 1em;">
                                                 
@@ -147,9 +160,9 @@ if (isset($_GET['data']))
                                         </span>
                                     </a>
                                     <div class="u-align-right u-form-group u-form-submit">
-                                      <input type="submit" value="submit" name="add" class="u-form-control-hidden">
                                   </div>
-                                  <input type="text" placeholder="Специальность" style="width: 10em;height: 1.2em;" id="hsdescription" name="FIO" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required="">
+                                  <input type="text" placeholder="Специальность" style="width: 10em;height: 1.2em;" id="hsdescription" name="spec" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"  required="">
+                                  <input type="hidden" name="data" value="<?php echo $ID;?>">
                                  </form>
                                  </div>
                             </div>
