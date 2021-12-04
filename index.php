@@ -321,7 +321,7 @@ if(!empty($_SESSION['login'])){
       </div>
     </section>
     <!--Авторизация - регистрация-->
-  <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-5" id="sec-784b">
+  <section class="u-black u-clearfix u-container-style u-dialog-block u-opacity u-opacity-70 u-section-5" style="margin: 297px auto 60px;" id="sec-784b">
       <div class="u-align-left u-container-style u-dialog u-shape-rectangle u-white u-dialog-1">
         <div class="u-container-layout u-valign-top u-container-layout-1">
           <div class="u-expanded-width u-tabs u-tabs-1">

@@ -11,11 +11,8 @@ $pieces[1]='Отсутствует';
 }
 $FIO=$pieces[1];
 $USER_ID =$_SESSION["ID"];
-if (isset($_GET['exe']))
+if ($_SESSION["level"] !=3 or empty($_SESSION["level"]))
 {
-   $_SESSION["ID"]=null;
-   $_SESSION["login"]=null;
-   $_SESSION["level"] = null; 
    echo "<script>window.location.href='./index.php'</script>";
 }
 ?>
